@@ -25,6 +25,9 @@ public class IntListTest {
         IntList L = IntList.of(1, 2, 3);
         IntList.dSquareList(L);
         assertEquals(IntList.of(1, 4, 9), L);
+
+        /** temp test for non destructive iterative. */
+        IntList test = IntList.squareListIterative(L);
     }
 
     /**

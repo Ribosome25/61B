@@ -33,6 +33,28 @@ public class IntList {
         this(0, null);
     }
 
+    public void addFirst(int x){
+        this.rest = new IntList(x, this.rest);
+    }
+
+    public int size(){
+        if (this.rest == null){
+            return 1;
+        } else {
+            return 1 + this.rest.size();
+        }
+    }
+
+    public int get(int ii){
+        if(ii>this.size()){
+            return 0;
+        }
+        if(ii == 0){
+            return this.first;
+        } else {
+            return this.rest.get(ii-1);
+        }
+    }
     /**
      * Returns a list equal to L with all elements squared. Destructive.
      */
@@ -82,7 +104,12 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList L = A;
+        while (L.rest != null) {
+            L = L.rest;
+        }
+        L.rest = B;
+        return A;
     }
 
     /**
@@ -91,10 +118,18 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        if (A == null) {
+            return B;
+        }
+        return new IntList(A.first, catenate(A.rest, B));
     }
 
+    public static void main(String[] args){
+        IntList L = new IntList(5,null);
+        L.addFirst(10);
+        L.addFirst(15);
 
+    }
 
 
 
