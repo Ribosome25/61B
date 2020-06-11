@@ -43,6 +43,14 @@ public class LinkedListDeque<T> {
         return rtItem;
     }
 
+    public T removeLast(){
+        T rtItem = this.sentinel.prev.item;
+        this.sentinel.prev = this.sentinel.prev.prev;
+        this.sentinel.prev.next = this.sentinel;
+        this.size -= 1;
+        return rtItem;
+    }
+
     public T get(int i){
         TNode pt = this.sentinel.next;
         while (i > 0){

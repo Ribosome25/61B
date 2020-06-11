@@ -105,6 +105,10 @@ public class ArrayDeque<T> {
         return this.items[pt];
     }
 
+    public T get(int i){
+        return this.items[i];
+    }
+
     public ArrayDeque(int startPosition){
         // This one is for testing.
         T[] items = (T[]) new Object[8];
