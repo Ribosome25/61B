@@ -1,3 +1,5 @@
+import java.net.Inet4Address;
+
 /** Performs some basic linked list tests. */
 public class LinkedListDequeTest {
 	
@@ -79,9 +81,25 @@ public class LinkedListDequeTest {
 		printTestStatus(passed);
 	}
 
+	public static void getTest(){
+		System.out.println("Running get, getRecursive test. ");
+		LinkedListDeque<Integer> lld1 = new LinkedListDeque<>();
+		boolean passed = checkEmpty(true, lld1.isEmpty());
+
+		lld1.addFirst(2);
+		lld1.addFirst(1);
+		lld1.addLast(3);
+		lld1.addLast(4);
+
+		passed = checkSize(1, lld1.get(0)) && passed;
+		passed = checkSize(3, lld1.getRecursive(2)) && passed;
+		printTestStatus(passed);
+
+	}
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
 		addIsEmptySizeTest();
 		addRemoveTest();
+		getTest();
 	}
 } 

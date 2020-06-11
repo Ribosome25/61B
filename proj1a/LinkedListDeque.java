@@ -43,6 +43,27 @@ public class LinkedListDeque<T> {
         return rtItem;
     }
 
+    public T get(int i){
+        TNode pt = this.sentinel.next;
+        while (i > 0){
+            i--;
+            pt = pt.next;
+        }
+        return pt.item;
+    }
+
+    private T getRecursiveNode(int i, TNode n){
+        if (i==0){
+            return n.item;
+        } else {
+            return getRecursiveNode(i-1, n.next);
+        }
+    }
+
+    public T getRecursive(int i){
+        return getRecursiveNode(i, this.sentinel.next);
+    }
+
     public boolean isEmpty(){
         if (this.size == 0){
             return true;
