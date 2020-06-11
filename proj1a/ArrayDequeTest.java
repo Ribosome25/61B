@@ -100,12 +100,28 @@ public class ArrayDequeTest {
             lld2.removeLast();
             lld2.removeFirst();
         }
-
     }
+
+        public static void getTest(){
+            System.out.println("Running get, getRecursive test. ");
+            ArrayDeque<Integer> lld1 = new ArrayDeque<>();
+            boolean passed = checkEmpty(true, lld1.isEmpty());
+
+            lld1.addFirst(2);
+            lld1.addFirst(1);
+            lld1.addLast(3);
+            lld1.addLast(4);
+
+            passed = checkSize(1, lld1.get(0)) && passed;
+            passed = checkSize(3, lld1.get(2)) && passed;
+            printTestStatus(passed);
+        }
+
     public static void main(String[] args) {
         System.out.println("Running tests.\n");
         addIsEmptySizeTest();
         addRemoveTest();
         increaseSizeTest();
+        getTest();
     }
 }
