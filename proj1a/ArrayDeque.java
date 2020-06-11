@@ -16,11 +16,8 @@ public class ArrayDeque<T> {
     private int increaseFactor = 2;
 
     public boolean isEmpty() {
-        if (this.size == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        boolean b = this.size == 0;
+        return b; 
     }
 
     public int size() {
@@ -42,7 +39,7 @@ public class ArrayDeque<T> {
         System.arraycopy(this.items,
                 (this.nextFirst + 1) % this.items.length, expandItems,
                 len2 - len1 + 1 + this.nextFirst,
-                len1 -1 - this.nextFirst);
+                len1 - 1 - this.nextFirst);
         this.nextFirst = len2 - len1 + this.nextFirst;
         this.items = expandItems;
     }
@@ -70,7 +67,7 @@ public class ArrayDeque<T> {
 
     private void checkArrayEmpty() {
         loadFactor = (float) this.size / (float) this.items.length;
-        if ((loadFactor) < 0.25) {
+        if ((0 < loadFactor) && (loadFactor < 0.25)) {
             decreaseSize();
         }
     }

@@ -78,7 +78,7 @@ public class LinkedListDequeTest {
 		printTestStatus(passed);
 	}
 
-	public static void getTest(){
+	public static void getTest() {
 		System.out.println("Running get, getRecursive test. ");
 		LinkedListDeque<Integer> lld1 = new LinkedListDeque<>();
 		boolean passed = checkEmpty(true, lld1.isEmpty());
@@ -99,4 +99,4 @@ public class LinkedListDequeTest {
 		addRemoveTest();
 		getTest();
 	}
-} 
+}

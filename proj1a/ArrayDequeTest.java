@@ -125,8 +125,19 @@ public class ArrayDequeTest {
         lld1.addFirst(0);
         lld1.addFirst(1);
         passed = checkSize(1, lld1.removeFirst()) && passed;
-        printTestStatus(passed);
 
+        ArrayDeque<Double> lld2 = new ArrayDeque<>();
+        lld2.addLast(0.0);
+        passed = (0.0 == lld2.removeLast()) && passed;
+        lld2.addLast(2.0);
+        passed = (2 == lld2.removeLast()) && passed;
+        passed = checkEmpty(true, lld2.isEmpty()) && passed;
+
+        lld2.addLast(0.0);
+        passed = (0 == lld2.removeFirst()) && passed;
+
+
+        printTestStatus(passed);
     }
 
     public static void typesTest() {
