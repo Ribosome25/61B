@@ -77,11 +77,11 @@ public class ArrayDequeTest {
         printTestStatus(passed);
     }
 
-    public static void increaseSizeTest(){
+    public static void increaseSizeTest() {
         System.out.println("Running increasing array size test.");
         /**
         ArrayDeque<Integer> lld1 = new ArrayDeque<>();
-        for (int jj = 1; jj <= 20; jj ++){
+        for (int jj = 1; jj <= 20; jj ++) {
             lld1.addFirst(jj);
         }
         boolean passed = checkEmpty(false, lld1.isEmpty());
@@ -89,39 +89,61 @@ public class ArrayDequeTest {
          */
 
         ArrayDeque<Double> lld2 = new ArrayDeque<>();
-        for (double ii = 1; ii < 20; ii++){
+        for (double ii = 1; ii < 20; ii++) {
             lld2.addLast(ii);
             lld2.addFirst(40 - ii);
         }
         boolean passed = checkEmpty(false, lld2.isEmpty());
         printTestStatus(passed);
 
-        for (int ii = 1; ii < 10; ii++){
+        for (int ii = 1; ii < 10; ii++) {
             lld2.removeLast();
             lld2.removeFirst();
         }
     }
 
-        public static void getTest(){
-            System.out.println("Running get, getRecursive test. ");
-            ArrayDeque<Integer> lld1 = new ArrayDeque<>();
-            boolean passed = checkEmpty(true, lld1.isEmpty());
+    public static void getTest() {
+        System.out.println("Running get, getRecursive test. ");
+        ArrayDeque<Integer> lld1 = new ArrayDeque<>();
+        boolean passed = checkEmpty(true, lld1.isEmpty());
 
-            lld1.addFirst(2);
-            lld1.addFirst(1);
-            lld1.addLast(3);
-            lld1.addLast(4);
+        lld1.addFirst(2);
+        lld1.addFirst(1);
+        lld1.addLast(3);
+        lld1.addLast(4);
 
-            passed = checkSize(1, lld1.get(0)) && passed;
-            passed = checkSize(3, lld1.get(2)) && passed;
-            printTestStatus(passed);
-        }
+        passed = checkSize(1, lld1.get(0)) && passed;
+        passed = checkSize(3, lld1.get(2)) && passed;
+        printTestStatus(passed);
+    }
 
+    public static void agTest() {
+        System.out.println("Running autograder  test. ");
+        ArrayDeque<Integer> lld1 = new ArrayDeque<>();
+        boolean passed = checkEmpty(true, lld1.isEmpty());
+
+        lld1.addFirst(0);
+        lld1.addFirst(1);
+        passed = checkSize(1, lld1.removeFirst()) && passed;
+        printTestStatus(passed);
+
+    }
+
+    public static void typesTest() {
+        System.out.println("New Alist for different types.");
+        ArrayDeque<Integer> lld1 = new ArrayDeque<>();
+        ArrayDeque<String> lld2 = new ArrayDeque<>();
+        ArrayDeque<Boolean> lld3 = new ArrayDeque<>();
+        ArrayDeque<Double> lld4 = new ArrayDeque<>();
+
+    }
     public static void main(String[] args) {
         System.out.println("Running tests.\n");
         addIsEmptySizeTest();
         addRemoveTest();
         increaseSizeTest();
         getTest();
+        agTest();
+        typesTest();
     }
 }

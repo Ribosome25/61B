@@ -40,7 +40,7 @@ public class ArrayDeque<T> {
         // right side: From First+1, (some times may from 0),
         // copy the rest. The id of next First change to len2-len1+F
         System.arraycopy(this.items,
-                (this.nextFirst+1) % this.items.length, expandItems,
+                (this.nextFirst + 1) % this.items.length, expandItems,
                 len2 - len1 + 1 + this.nextFirst,
                 len1 -1 - this.nextFirst);
         this.nextFirst = len2 - len1 + this.nextFirst;
@@ -77,7 +77,7 @@ public class ArrayDeque<T> {
 
     public void addFirst(T item) {
         this.items[this.nextFirst] = item;
-        this.nextFirst = (this.nextFirst -1 + items.length) % items.length;
+        this.nextFirst = (this.nextFirst - 1 + items.length) % items.length;
         this.size += 1;
         checkArrayFull();
     }
@@ -91,37 +91,31 @@ public class ArrayDeque<T> {
 
     public T removeFirst() {
         if (this.isEmpty()) {
-            return  null;
+            return null;
         }
         int pt = (this.nextFirst + 1) % items.length;
         this.nextFirst = pt;
         this.size -= 1;
+        T rt = this.items[pt];
         checkArrayEmpty();
-        return this.items[pt];
+        return rt;
     }
 
     public T removeLast() {
         if (this.isEmpty()) {
             return  null;
         }
-        int pt = (this.nextLast -1 + items.length) % items.length;
+        int pt = (this.nextLast - 1 + items.length) % items.length;
         this.nextLast = pt;
         this.size -= 1;
+        T rt = this.items[pt];
         checkArrayEmpty();
-        return this.items[pt];
+        return rt;
     }
 
     public T get(int i) {
         int pt = (this.nextFirst + i + 1) % this.items.length;
         return this.items[pt];
-    }
-
-    public ArrayDeque(int startPosition) {
-        // This one is for testing.
-        T[] items = (T[]) new Object[8];
-        this.nextFirst = startPosition - 1;
-        this.nextLast = startPosition;
-        this.size = 0;
     }
 
     public ArrayDeque() {

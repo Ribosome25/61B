@@ -1,6 +1,6 @@
 public class LinkedListDeque<T> {
 
-    private class TNode{
+    private class TNode {
         private TNode prev;
         private T item;
         private TNode next;
@@ -70,7 +70,7 @@ public class LinkedListDeque<T> {
         if (i == 0) {
             return n.item;
         } else {
-            return getRecursiveNode(i-1, n.next);
+            return getRecursiveNode(i - 1, n.next);
         }
     }
 
@@ -81,7 +81,7 @@ public class LinkedListDeque<T> {
     public boolean isEmpty() {
         if (this.size == 0) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
