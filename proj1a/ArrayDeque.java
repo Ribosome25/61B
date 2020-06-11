@@ -67,7 +67,7 @@ public class ArrayDeque<T> {
 
     private void checkArrayEmpty() {
         loadFactor = (float) this.size / (float) this.items.length;
-        if ((0 < loadFactor) && (loadFactor < 0.25)) {
+        if ((this.items.length > 8) && (loadFactor < 0.25)) {
             decreaseSize();
         }
     }
