@@ -56,6 +56,7 @@ public class ArrayDeque<T> {
             shrinkedItems[j] = this.items[i];
         }
         this.nextFirst = (this.nextFirst) % len2;
+        this.nextLast = (this.nextLast) % len2;
         this.items = shrinkedItems;
     }
 

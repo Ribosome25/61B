@@ -140,6 +140,52 @@ public class ArrayDequeTest {
         printTestStatus(passed);
     }
 
+    public static void getTestAG() {
+        ArrayDeque<Integer> ArrayDeque = new ArrayDeque<>();
+        boolean passed = checkEmpty(true, ArrayDeque.isEmpty());
+        int t;
+        ArrayDeque.addFirst(0);
+        ArrayDeque.addLast(1);
+        t = ArrayDeque.removeFirst();
+        passed = checkSize(0, t) && passed;
+        ArrayDeque.addLast(3);
+        t = ArrayDeque.get(0);
+        passed = checkSize(1, t) && passed;
+        ArrayDeque.addLast(5);
+        t = ArrayDeque.removeFirst();
+        passed = checkSize(1, t) && passed;
+
+        ArrayDeque.addLast(7);
+        t = ArrayDeque.get(1);
+        passed = checkSize(5, t) && passed;
+
+        ArrayDeque.addFirst(9);
+        ArrayDeque.addFirst(10);
+        t = ArrayDeque.removeFirst();
+        passed = checkSize(10, t) && passed;
+
+        ArrayDeque.addLast(12);
+        t = ArrayDeque.get(2);
+        passed = checkSize(5, t) && passed;
+        t = ArrayDeque.removeFirst();
+        passed = checkSize(9, t) && passed;
+
+        ArrayDeque.addLast(15);
+        ArrayDeque.addFirst(16);
+        ArrayDeque.addFirst(17);
+        t = ArrayDeque.removeLast();
+        passed = checkSize(15, t) && passed;
+        t = ArrayDeque.removeFirst();
+        passed = checkSize(17, t) && passed;
+        t = ArrayDeque.removeLast();
+        passed = checkSize(12, t) && passed;
+        t = ArrayDeque.removeFirst();
+        passed = checkSize(16, t) && passed;
+        t = ArrayDeque.removeFirst();
+        passed = checkSize(3, t) && passed;
+        ArrayDeque.addLast(23);
+        printTestStatus(passed);
+    }
     public static void typesTest() {
         System.out.println("New Alist for different types.");
         ArrayDeque<Integer> lld1 = new ArrayDeque<>();
@@ -156,5 +202,6 @@ public class ArrayDequeTest {
         getTest();
         agTest();
         typesTest();
+        getTestAG();
     }
 }
