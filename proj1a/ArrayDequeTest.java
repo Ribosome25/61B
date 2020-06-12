@@ -141,49 +141,49 @@ public class ArrayDequeTest {
     }
 
     public static void getTestAG() {
-        ArrayDeque<Integer> ArrayDeque = new ArrayDeque<>();
-        boolean passed = checkEmpty(true, ArrayDeque.isEmpty());
+        ArrayDeque<Integer> arrayDeque = new ArrayDeque<>();
+        boolean passed = checkEmpty(true, arrayDeque.isEmpty());
         int t;
-        ArrayDeque.addFirst(0);
-        ArrayDeque.addLast(1);
-        t = ArrayDeque.removeFirst();
+        arrayDeque.addFirst(0);
+        arrayDeque.addLast(1);
+        t = arrayDeque.removeFirst();
         passed = checkSize(0, t) && passed;
-        ArrayDeque.addLast(3);
-        t = ArrayDeque.get(0);
+        arrayDeque.addLast(3);
+        t = arrayDeque.get(0);
         passed = checkSize(1, t) && passed;
-        ArrayDeque.addLast(5);
-        t = ArrayDeque.removeFirst();
+        arrayDeque.addLast(5);
+        t = arrayDeque.removeFirst();
         passed = checkSize(1, t) && passed;
 
-        ArrayDeque.addLast(7);
-        t = ArrayDeque.get(1);
+        arrayDeque.addLast(7);
+        t = arrayDeque.get(1);
         passed = checkSize(5, t) && passed;
 
-        ArrayDeque.addFirst(9);
-        ArrayDeque.addFirst(10);
-        t = ArrayDeque.removeFirst();
+        arrayDeque.addFirst(9);
+        arrayDeque.addFirst(10);
+        t = arrayDeque.removeFirst();
         passed = checkSize(10, t) && passed;
 
-        ArrayDeque.addLast(12);
-        t = ArrayDeque.get(2);
+        arrayDeque.addLast(12);
+        t = arrayDeque.get(2);
         passed = checkSize(5, t) && passed;
-        t = ArrayDeque.removeFirst();
+        t = arrayDeque.removeFirst();
         passed = checkSize(9, t) && passed;
 
-        ArrayDeque.addLast(15);
-        ArrayDeque.addFirst(16);
-        ArrayDeque.addFirst(17);
-        t = ArrayDeque.removeLast();
+        arrayDeque.addLast(15);
+        arrayDeque.addFirst(16);
+        arrayDeque.addFirst(17);
+        t = arrayDeque.removeLast();
         passed = checkSize(15, t) && passed;
-        t = ArrayDeque.removeFirst();
+        t = arrayDeque.removeFirst();
         passed = checkSize(17, t) && passed;
-        t = ArrayDeque.removeLast();
+        t = arrayDeque.removeLast();
         passed = checkSize(12, t) && passed;
-        t = ArrayDeque.removeFirst();
+        t = arrayDeque.removeFirst();
         passed = checkSize(16, t) && passed;
-        t = ArrayDeque.removeFirst();
+        t = arrayDeque.removeFirst();
         passed = checkSize(3, t) && passed;
-        ArrayDeque.addLast(23);
+        arrayDeque.addLast(23);
         printTestStatus(passed);
     }
     public static void typesTest() {
