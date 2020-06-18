@@ -18,18 +18,18 @@ public class TestPalindrome {
     }
 
     @Test
-    public void testPalidrome1() {
+    public void testPalidrome() {
         System.out.println("Test palindrome 1.");
         String a = "";
         assertTrue(palindrome.isPalindrome(a));
         String b = "a";
         assertTrue(palindrome.isPalindrome(b));
         String c = "Aa";
-        assertTrue(palindrome.isPalindrome(c));
+        assertFalse(palindrome.isPalindrome(c));
         String d = "ba";
         assertFalse(palindrome.isPalindrome(d));
         String e = "Aea";
-        assertTrue(palindrome.isPalindrome(e));
+        assertFalse(palindrome.isPalindrome(e));
         String f = "abba";
         assertTrue(palindrome.isPalindrome(f));
     }
@@ -44,11 +44,17 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome(b, ofo));
         String c = "Aa";
         assertFalse(palindrome.isPalindrome(c, ofo));
-        String d = "ba";
-        assertTrue(palindrome.isPalindrome(d, ofo));
+        String d = "Ba";
+        assertFalse(palindrome.isPalindrome(d, ofo));
         String e = "AeB";
         assertTrue(palindrome.isPalindrome(e, ofo));
         String f = "BbaA";
         assertTrue(palindrome.isPalindrome(f, ofo));
+        String g = "GffgF";
+        assertTrue(palindrome.isPalindrome(g, ofo));
+        String h = "DqwvrC";
+        assertTrue(palindrome.isPalindrome(h, ofo));
+        String i = "Dqwvrc";
+        assertFalse(palindrome.isPalindrome(i, ofo));
     }
 }

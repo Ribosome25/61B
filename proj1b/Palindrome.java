@@ -13,11 +13,11 @@ public class Palindrome {
         }
     }
 
-    public boolean isSameChar(char a, char b) {
+    private boolean isSameChar(char a, char b) {
         return a == b;
     }
 
-    public boolean isListPalindrome(Deque<Character> charlist) {
+    private boolean isListPalindrome(Deque<Character> charlist) {
         if (charlist.size() == 0 || charlist.size() == 1) {
             return true;
         } else {
@@ -31,7 +31,7 @@ public class Palindrome {
         }
     }
 
-    public boolean isListPalindrome(Deque<Character> charlist, CharacterComparator cc) {
+    private boolean isListPalindrome(Deque<Character> charlist, CharacterComparator cc) {
         if (charlist.size() == 0 || charlist.size() == 1) {
             return true;
         } else {
@@ -46,7 +46,7 @@ public class Palindrome {
     }
 
     public boolean isPalindrome(String word) {
-        Deque<Character> charList = wordToDeque(word.toLowerCase());
+        Deque<Character> charList = wordToDeque(word);
         return isListPalindrome(charList);
     }
 
