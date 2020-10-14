@@ -1,6 +1,8 @@
 package lab9;
 
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Set;
 
 /**
@@ -110,16 +112,34 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
     /* Returns a Set view of the keys contained in this map. */
     @Override
     public Set<K> keySet() {
-        throw new UnsupportedOperationException();
+        LinkedList<K> keys = new LinkedList<>();
+        keySetHelper(keys, root);
+        HashSet<K> set = new HashSet<>();
+        set.addAll(keys);
+        return set;
+    }
+
+    private void keySetHelper(LinkedList<K> keys, Node p) {
+        if (p!=null) {
+            keys.add(p.key);
+            keySetHelper(keys, p.left);
+            keySetHelper(keys, p.right);
+        }
     }
 
     /** Removes KEY from the tree if present
      *  returns VALUE removed,
      *  null on failed removal.
      */
+
     @Override
     public V remove(K key) {
-        throw new UnsupportedOperationException();
+
+        return null;
+    }
+
+    private V remove (K key, Node p) {
+
     }
 
     /** Removes the key-value entry for the specified key only if it is
