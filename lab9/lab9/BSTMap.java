@@ -138,9 +138,6 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
         return null;
     }
 
-    private V remove (K key, Node p) {
-
-    }
 
     /** Removes the key-value entry for the specified key only if it is
      *  currently mapped to the specified value.  Returns the VALUE removed,
