@@ -30,17 +30,17 @@ public class Percolation {
         mapF = new WeightedQuickUnionUF(n*n + 2);
         mapP = new WeightedQuickUnionUF(n*n + 2);
         for (int i = 0; i < n; i += 1) {
-            mapF.union(n*n-2, i); // n*n-2 as the virtual source.
-            mapP.union(n*n-2, i);
+            mapF.union(n*n, i); // n*n as the virtual source.
+            mapP.union(n*n, i);
         }
         for (int i=n*(n-1); i<n*n; i+=1) {
-            mapP.union(n*n-1, i);
+            mapP.union(n*n+1, i);
         }
     }
 
     private void connectOpens(int i) {
         for (int step : new int[]{-n, -1, 1, n}) {
-            if (i + step >= 0 || i + step < n*n) {
+            if (i + step >= 0 && i + step < n*n) {
                 if (this.array[i+step]) { // is open
                     mapF.union(i, i+step);
                     mapP.union(i, i+step);
@@ -65,8 +65,11 @@ public class Percolation {
     }
 
     public boolean isFull(int row, int col) {
+        if (! isOpen(row, col)) {
+            return false;
+        }
         int id = locationFinder(row, col);
-        return mapF.connected(id, n*n-2);
+        return mapF.connected(id, n*n);
     }
 
     public int numberOfOpenSites() {
@@ -78,8 +81,27 @@ public class Percolation {
     }
 
     public boolean percolates() {
-        return mapP.connected(n*n-2, n*n-1);
+        return mapP.connected(n*n, n*n+1);
     }
 
-    public static void main(String[] args) {}  // use for unit testing (not required)
+    public static void main(String[] args) {
+        Percolation p1 = new Percolation(10);
+        boolean t1 = p1.isOpen(0,1);
+        p1.open(0, 1);
+        boolean t2 = p1.isOpen(0, 1);
+        System.out.println(t1);
+        System.out.println(t2);
+
+        t1 = p1.isFull(0, 2);
+        t2 = p1.isFull(0, 1);
+        System.out.println(t1);
+        System.out.println(t2);
+
+        p1.open(1, 3);
+        t1 = p1.isFull(1, 3);
+        p1.open(0, 3);
+        t2 = p1.isFull(1, 3);
+        System.out.println(t1);
+        System.out.println(t2);
+    }  // use for unit testing (not required)
 }
