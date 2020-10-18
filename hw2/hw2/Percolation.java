@@ -22,7 +22,7 @@ public class Percolation {
     }
 
     public Percolation(int N) {
-        if (N<0) {
+        if (N < 0) {
             throw new java.lang.IllegalArgumentException();
         }
         n = N;
@@ -38,8 +38,8 @@ public class Percolation {
             mapF.union(nn, i); // nn as the virtual source.
             mapP.union(nn, i);
         }
-        for (int i=n*(n-1); i<nn; i+=1) {
-            mapP.union(nn+1, i);
+        for (int i = n * (n - 1); i < nn; i += 1) {
+            mapP.union(nn + 1, i);
         }
     }
 
@@ -68,7 +68,7 @@ public class Percolation {
     }
 
     public boolean isFull(int row, int col) {
-        if (! isOpen(row, col)) {
+        if (!isOpen(row, col)) {
             return false;
         }
         int id = locationFinder(row, col);
@@ -89,12 +89,12 @@ public class Percolation {
         if (this.numberOfOpenSites() == 0) {
             return false;
         }
-        return mapP.connected(n * n, n * n+1);
+        return mapP.connected(n * n, n * n + 1);
     }
 
     public static void main(String[] args) {
         Percolation p1 = new Percolation(10);
-        boolean t1 = p1.isOpen(0,1);
+        boolean t1 = p1.isOpen(0, 1);
         p1.open(0, 1);
         boolean t2 = p1.isOpen(0, 1);
         System.out.println(t1);
