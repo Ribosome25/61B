@@ -10,9 +10,11 @@ public class Percolation {
     private WeightedQuickUnionUF mapP;
 
     private boolean checkRange(int x, int y) {
-        if (x<0 || y<0 || x>n || y>n) {
+        if (x < 0 || y < 0 || x > n || y > n) {
             throw new IndexOutOfBoundsException();
-        } else return true;
+        } else {
+            return true;
+        }
     }
 
     private int locationFinder(int x, int y) {
@@ -20,32 +22,24 @@ public class Percolation {
     }
 
     public Percolation(int N) {
-        if (N<0) throw new java.lang.IllegalArgumentException();
+        if (N<0) {
+            throw new java.lang.IllegalArgumentException();
+        }
         n = N;
-        array = new boolean[n*n];
+        int nn = n * n;
+        array = new boolean[nn];
         for (boolean b : array) {
             b = false;
         }
 
-        mapF = new WeightedQuickUnionUF(n*n + 2);
-        mapP = new WeightedQuickUnionUF(n*n + 2);
+        mapF = new WeightedQuickUnionUF(nn + 2);
+        mapP = new WeightedQuickUnionUF(nn + 2);
         for (int i = 0; i < n; i += 1) {
-            mapF.union(n*n, i); // n*n as the virtual source.
-            mapP.union(n*n, i);
+            mapF.union(nn, i); // nn as the virtual source.
+            mapP.union(nn, i);
         }
-        for (int i=n*(n-1); i<n*n; i+=1) {
-            mapP.union(n*n+1, i);
-        }
-    }
-
-    private void connectOpens(int i) {
-        for (int step : new int[]{-n, -1, 1, n}) {
-            if (i + step >= 0 && i + step < n*n) {
-                if (this.array[i+step]) { // is open
-                    mapF.union(i, i+step);
-                    mapP.union(i, i+step);
-                }
-            }
+        for (int i=n*(n-1); i<nn; i+=1) {
+            mapP.union(nn+1, i);
         }
     }
 
@@ -55,7 +49,16 @@ public class Percolation {
         } else {
             int id = locationFinder(row, col);
             array[id] = true;
-            connectOpens(id);
+
+            for (int[] xx : new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}}) {
+                int col2 = col + xx[1];
+                int row2 = row + xx[0];
+                if (col2 >= 0 && col2 < n && row2 >= 0 && row2 < n && isOpen(row2, col2)) {
+                    int id2 = locationFinder(row2, col2);
+                    mapF.union(id, id2);
+                    mapP.union(id, id2);
+                }
+            }
         }
     }
 
@@ -69,19 +72,24 @@ public class Percolation {
             return false;
         }
         int id = locationFinder(row, col);
-        return mapF.connected(id, n*n);
+        return mapF.connected(id, n * n);
     }
 
     public int numberOfOpenSites() {
         int count = 0;
         for (boolean b : array) {
-            if (b) count += 1;
+            if (b) {
+                count += 1;
+            }
         }
         return count;
     }
 
     public boolean percolates() {
-        return mapP.connected(n*n, n*n+1);
+        if (this.numberOfOpenSites() == 0) {
+            return false;
+        }
+        return mapP.connected(n * n, n * n+1);
     }
 
     public static void main(String[] args) {

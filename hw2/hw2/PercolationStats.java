@@ -12,7 +12,7 @@ public class PercolationStats {
             throw new java.lang.IllegalArgumentException();
         }
         results = new double[T];
-        for (int i=0; i<T; i++) {
+        for (int i = 0; i < T; i++) {
             Percolation p = pf.make(N);
             while (true) {
                 int x = StdRandom.uniform(N);
