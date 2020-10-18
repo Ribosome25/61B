@@ -6,6 +6,7 @@ import edu.princeton.cs.introcs.StdStats;
 public class PercolationStats {
 
     private double[] results;
+    private double t;
 
     public PercolationStats(int N, int T, PercolationFactory pf) {
         if (N <= 0 || T <= 0) {
@@ -20,12 +21,13 @@ public class PercolationStats {
                 p.open(x, y);
                 if (p.percolates()) {
                     double count = p.numberOfOpenSites();
-                    double percentage = count / (N*N);
+                    double percentage = count / (N * N);
                     results[i] = percentage;
                     break;
                 }
             }
         }
+        t = T;
     }  // perform T independent experiments on an N-by-N grid
 
     public double mean() {
@@ -39,18 +41,20 @@ public class PercolationStats {
     public double confidenceLow() {
         double mean = mean();
         double std = stddev();
-        return mean - 1.96*std;
+        return mean - 1.96 * std / Math.sqrt(t);
     }                                  // low endpoint of 95% confidence interval
 
     public double confidenceHigh() {
         double mean = mean();
         double std = stddev();
-        return mean + 1.96*std;
+        return mean + 1.96 * std / Math.sqrt(t);
     }                                 // high endpoint of 95% confidence interval
-    public static void main(String[] args){
+    /*
+    public static void main(String[] args) {
         PercolationFactory pf = new PercolationFactory();
         PercolationStats ps = new PercolationStats(4, 10, pf);
         double t1 = ps.mean();
         double t2 = ps.stddev();
     }
+    */
 }
