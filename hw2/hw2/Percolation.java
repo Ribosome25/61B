@@ -1,5 +1,4 @@
 package hw2;
-import java.lang.IndexOutOfBoundsException;
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
@@ -44,6 +43,7 @@ public class Percolation {
     }
 
     public void open(int row, int col) {
+        checkRange(row, col);
         if (isOpen(row, col)) {
             return;
         } else {
@@ -63,11 +63,13 @@ public class Percolation {
     }
 
     public boolean isOpen(int row, int col) {
+        checkRange(row, col);
         int id = locationFinder(row, col);
         return array[id];
     }
 
     public boolean isFull(int row, int col) {
+        checkRange(row, col);
         if (!isOpen(row, col)) {
             return false;
         }
