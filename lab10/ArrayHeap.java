@@ -183,11 +183,13 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     @Override
     public T removeMin() {
         /* TODO: Your code here! */
-        Node root = contents[1];
+        T rt = contents[1].item();
         swap(size, 1);
         size -= 1;
-        sink(1);
-        return root.item();
+        if(size>1) {
+            sink(1);
+        }
+        return rt;
     }
 
     /**
@@ -451,4 +453,10 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         }
     }
 
+    @Test
+    public void testSingleEnqueDequeue() {
+        ExtrinsicPQ<String> pq = new ArrayHeap<>();
+        pq.insert("c", 3);
+        assertEquals("c", pq.removeMin());
+    }
 }
