@@ -219,6 +219,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
                 contents[ii] = new Node(item, priority);
                 break;
             }
+            ii += 1;
         }
         return;
     }
