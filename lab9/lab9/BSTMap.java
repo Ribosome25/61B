@@ -29,6 +29,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
 
     private Node root;  /* Root node of the tree. */
     private int size; /* The number of key-value pairs in the tree */
+    private V deletedValue;
 
     /* Creates an empty BSTMap. */
     public BSTMap() {
@@ -131,13 +132,51 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
      *  returns VALUE removed,
      *  null on failed removal.
      */
+    private Node minNode(Node x) {
+        if (x.left == null) {
+            return x;
+        } else {
+            return minNode(x.left);
+        }
+    }
 
     @Override
     public V remove(K key) {
-
-        return null;
+        root = removeHelper(root, key);
+        return deletedValue;
     }
 
+    private Node removeMin(Node x, K key) {
+        int cmp = key.compareTo(x.key);
+        if (cmp == 0) {
+            return x.right;
+        } else {
+            x.left = removeMin(x.left, key);
+            return x;
+        }
+    }
+
+    private Node removeHelper(Node x, K key) {
+        if (x == null) {return null;}
+        int cmp = key.compareTo(x.key);
+        if (cmp < 0) {x.left = removeHelper(x.left, key);}
+        if (cmp > 0) {x.right = removeHelper(x.right, key);}
+        if (cmp == 0) {
+            size -= 1;
+            deletedValue = x.value;
+            if (x.left == null) {
+                return x.right;
+            } else if (x.right == null) {
+                return x.left;
+            } else {
+                Node t = minNode(x.right);
+                t.left = x.left;
+                t.right = removeMin(x.right, t.key);
+                return t;
+            }
+        }
+        return x;
+    }
 
     /** Removes the key-value entry for the specified key only if it is
      *  currently mapped to the specified value.  Returns the VALUE removed,
@@ -145,7 +184,12 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
      **/
     @Override
     public V remove(K key, V value) {
-        throw new UnsupportedOperationException();
+        V got = get(key);
+        if (got == value) {
+            remove(key);
+        } else {
+            return null;
+        }
     }
 
     @Override
