@@ -186,7 +186,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
     public V remove(K key, V value) {
         V got = get(key);
         if (got == value) {
-            remove(key);
+            return remove(key);
         } else {
             return null;
         }
